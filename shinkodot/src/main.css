@@ -1,0 +1,29 @@
+#main {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+}
+
+#album {
+  text-align: left;
+  font-weight: bold;
+  font-size: large;
+}
+
+#artist {
+  font-weight: lighter;
+  font-size: small;
+}
+
+#main02 {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  height: 100%;
+  margin-top: -30px;
+}
+
+#contact,
+#subscribe,
+#shop {
+  margin-right: 30px;
+}
