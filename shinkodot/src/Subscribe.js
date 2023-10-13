@@ -18,7 +18,7 @@ export default function Subscribe() {
   const handleSubmit = () => {
     if (isHuman) {
       console.log('Submitting email: ', email);
-      // 서버로 이메일 데이터베이스에 담는 로직
+      // 서버로 이메일 데이터베이스에 담는 로직 (나중에 추가)
     } else {
       console.log('로봇이 아님을 확인해주세요');
     }
