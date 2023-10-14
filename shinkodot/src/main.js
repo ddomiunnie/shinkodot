@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Contact from './Contact';
 import Modal from './Modal';
 import Subscribe from './Subscribe';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 export default function Main() {
   //contact
@@ -27,9 +28,7 @@ export default function Main() {
   };
   //shop popup
   const openPopup = (url) => {
-    const shopURL =
-      url ||
-      'https://www.chanel.com/kr/fragrance/?gclid=Cj0KCQjwj5mpBhDJARIsAOVjBdr033Ek88kxLhhwhgEM2ywlfZd2StYMUFCZfT3BhTxAcWeGnKZ_O3waAmScEALw_wcB';
+    const shopURL = url || 'https://marpple.shop/shinkodot';
 
     //팝업창 위치
     const screenWidth =
@@ -59,26 +58,113 @@ export default function Main() {
   };
 
   return (
-    <div id="main">
-      <span id="album">shinkodot</span> <br />
-      <span id="artist">shinkodot</span>
-      <div id="main02">
-        <button id="contact" onClick={openContactModal}>
-          contact
-        </button>
-        <button id="subscribe" onClick={openSubscribeModal}>
-          subscribe
-        </button>
-        <button id="shop" onClick={() => openPopup()}>
-          shop
-        </button>
+    <>
+      <GoogleReCaptchaProvider reCaptchaKey="6LfdlZkoAAAAAAf5EXOxXO_Dn2vwobNGkv8AHaIY">
+        <div id="main">
+          <span id="album">shinkodot</span> <br />
+          <span id="artist">shinkodot</span>
+          <div id="main02">
+            <button id="contact" onClick={openContactModal}>
+              contact
+            </button>
+            <button id="subscribe" onClick={openSubscribeModal}>
+              subscribe
+            </button>
+            <button id="shop" onClick={() => openPopup()}>
+              shop
+            </button>
+          </div>
+          <Modal isOpen={isContactModalOpen} onClose={closeContactModal}>
+            <Contact />
+          </Modal>
+          <Modal isOpen={isSubscribeModalOpen} onClose={closeSubscribeModal}>
+            <Subscribe />
+          </Modal>
+        </div>
+      </GoogleReCaptchaProvider>
+      {/* icon */}
+      <div className="icon-container">
+        <br />
+        <img
+          id="icon1"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/heart-with-pulse.png"
+          alt="heart-with-pulse"
+        />
+        <br />
+        <img
+          id="icon2"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/pill.png"
+          alt="pill"
+        />
+        <br />
+        <img
+          id="icon3"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/snail.png"
+          alt="snail"
+        />
+        <br />
+        <img
+          id="icon4"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/ghost.png"
+          alt="ghost"
+        />
+        <br />
+        <img
+          id="icon5"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/fan-2.png"
+          alt="fan-2"
+        />
+        <br />
+        <img
+          id="icon6"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/biotech.png"
+          alt="biotech"
+        />
+        <br />
+        <img
+          id="icon7"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/beach-ball.png"
+          alt="beach-ball"
+        />
+        <br />
+        <img
+          id="icon8"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/edit.png"
+          alt="edit"
+        />
+        <br />
+        <img
+          id="icon9"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/physics.png"
+          alt="physics"
+        />
+        <br />
+        <img
+          id="icon10"
+          width="94"
+          height="94"
+          src="https://img.icons8.com/3d-fluency/94/spotify.png"
+          alt="spotify"
+        />
       </div>
-      <Modal isOpen={isContactModalOpen} onClose={closeContactModal}>
-        <Contact />
-      </Modal>
-      <Modal isOpen={isSubscribeModalOpen} onClose={closeSubscribeModal}>
-        <Subscribe />
-      </Modal>
-    </div>
+    </>
   );
 }

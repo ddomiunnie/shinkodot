@@ -26,5 +26,19 @@
 #contact,
 #subscribe,
 #shop {
-  margin-right: 30px;
+  margin-right: 10px;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* icon2, icon4, icon6, icon8, icon10을 오른쪽으로 정렬 */
+#icon2,
+#icon4,
+#icon6,
+#icon8,
+#icon10 {
+  margin-left: auto;
 }
