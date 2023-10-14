@@ -57,6 +57,9 @@ export default function Main() {
     }
   };
 
+  //icon btn
+
+  //view
   return (
     <>
       <GoogleReCaptchaProvider reCaptchaKey="6LfdlZkoAAAAAAf5EXOxXO_Dn2vwobNGkv8AHaIY">
@@ -82,88 +85,114 @@ export default function Main() {
           </Modal>
         </div>
       </GoogleReCaptchaProvider>
+      {/* logo */}
+      <div className="logo-container">
+        <span id="logo">SHINKODOT</span>
+        <br />
+        <span id="notice">click the icon</span>
+      </div>
       {/* icon */}
       <div className="icon-container">
         <br />
-        <img
-          id="icon1"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/heart-with-pulse.png"
-          alt="heart-with-pulse"
-        />
+        <button className="music-btn" id="icon1_btn">
+          <img
+            id="icon1"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/heart-with-pulse.png"
+            alt="heart-with-pulse"
+          />
+        </button>
         <br />
-        <img
-          id="icon2"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/pill.png"
-          alt="pill"
-        />
+        <button className="music-btn" id="icon2_btn">
+          <img
+            id="icon2"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/pill.png"
+            alt="pill"
+          />
+        </button>
         <br />
-        <img
-          id="icon3"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/snail.png"
-          alt="snail"
-        />
+        <button className="music-btn" id="icon3_btn">
+          <img
+            id="icon3"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/snail.png"
+            alt="snail"
+          />
+        </button>
         <br />
-        <img
-          id="icon4"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/ghost.png"
-          alt="ghost"
-        />
+        <button className="music-btn" id="icon4_btn">
+          <img
+            id="icon4"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/ghost.png"
+            alt="ghost"
+          />
+        </button>
         <br />
-        <img
-          id="icon5"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/fan-2.png"
-          alt="fan-2"
-        />
+        <button className="music-btn" id="icon5_btn">
+          <img
+            id="icon5"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/fan-2.png"
+            alt="fan-2"
+          />
+        </button>
         <br />
-        <img
-          id="icon6"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/biotech.png"
-          alt="biotech"
-        />
+        <button className="music-btn" id="icon6_btn">
+          <img
+            id="icon6"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/biotech.png"
+            alt="biotech"
+          />
+        </button>
         <br />
-        <img
-          id="icon7"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/beach-ball.png"
-          alt="beach-ball"
-        />
+        <button className="music-btn" id="icon7_btn">
+          <img
+            id="icon7"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/beach-ball.png"
+            alt="beach-ball"
+          />
+        </button>
         <br />
-        <img
-          id="icon8"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/edit.png"
-          alt="edit"
-        />
+        <button className="music-btn" id="icon8_btn">
+          <img
+            id="icon8"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/edit.png"
+            alt="edit"
+          />
+        </button>
         <br />
-        <img
-          id="icon9"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/physics.png"
-          alt="physics"
-        />
+        <button className="music-btn" id="icon9_btn">
+          <img
+            id="icon9"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/physics.png"
+            alt="physics"
+          />
+        </button>
         <br />
-        <img
-          id="icon10"
-          width="94"
-          height="94"
-          src="https://img.icons8.com/3d-fluency/94/spotify.png"
-          alt="spotify"
-        />
+        <button className="music-btn" id="icon10_btn">
+          <img
+            id="icon10"
+            width="94"
+            height="94"
+            src="https://img.icons8.com/3d-fluency/94/spotify.png"
+            alt="spotify"
+          />
+        </button>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-/* main.css */
+/* 상단 로고 */
 #main {
   font-family: 'Arial', sans-serif;
   margin: 20px;
@@ -29,16 +29,43 @@
   margin-right: 10px;
 }
 
+/* 아이콘 */
 .icon-container {
   display: flex;
   flex-direction: column;
 }
 
-/* icon2, icon4, icon6, icon8, icon10을 오른쪽으로 정렬 */
 #icon2,
 #icon4,
 #icon6,
 #icon8,
-#icon10 {
+#icon10,
+#icon2_btn,
+#icon4_btn,
+#icon6_btn,
+#icon8_btn,
+#icon10_btn {
   margin-left: auto;
+}
+
+.music-btn {
+  width: 94px;
+  height: 94px;
+  background: none;
+  border: none;
+}
+
+/* 로고 */
+.logo-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#notice {
+  text-align: center;
+}
+#logo {
+  font-size: 40px;
 }
