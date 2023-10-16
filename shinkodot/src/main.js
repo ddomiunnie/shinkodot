@@ -1,6 +1,6 @@
 //main.js
 import './main.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Contact from './Contact';
 import Modal from './Modal';
 import Subscribe from './Subscribe';
@@ -57,7 +57,29 @@ export default function Main() {
     }
   };
 
-  //icon btn
+  //music player
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const audioRefs = useRef(Array.from({ length: 7 }, () => new Audio()));
+
+  const playMusic = (trackNumber) => {
+    const filePath = `public/music/${trackNumber}.wav`;
+
+    if (currentTrack !== filePath) {
+      audioRefs.current.forEach((audio) => {
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+    }
+
+    setCurrentTrack(filePath);
+    const audio = audioRefs.current[trackNumber - 1];
+    if (audio) {
+      audio.src = filePath;
+      audio.play();
+    }
+  };
 
   //view
   return (
@@ -94,7 +116,11 @@ export default function Main() {
       {/* icon */}
       <div className="icon-container">
         <br />
-        <button className="music-btn" id="icon1_btn">
+        <button
+          className="music-btn"
+          id="icon1_btn"
+          onClick={() => playMusic(1)}
+        >
           <img
             id="icon1"
             width="94"
