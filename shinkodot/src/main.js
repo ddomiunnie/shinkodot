@@ -1,6 +1,6 @@
 //main.js
 import './main.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Contact from './Contact';
 import Modal from './Modal';
 import Subscribe from './Subscribe';
@@ -104,6 +104,8 @@ export default function Main() {
       }
     });
   };
+
+  //video 배경
 
   //view
   return (
