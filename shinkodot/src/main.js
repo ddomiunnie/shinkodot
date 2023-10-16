@@ -7,6 +7,8 @@ import Subscribe from './Subscribe';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 export default function Main() {
+  //neon effect
+  const [isGlowing, setIsGlowing] = useState(false);
   //contact
   const [isContactModalOpen, setContactModalOpen] = useState(false);
 
@@ -66,6 +68,7 @@ export default function Main() {
 
   const playMusic = async (trackNumber) => {
     const filePath = `/music/${trackNumber}.wav`;
+    setIsGlowing(true);
 
     if (currentTrack !== filePath) {
       audioRefs.current.forEach((audio) => {
@@ -103,6 +106,7 @@ export default function Main() {
         setIsCredit(false);
       }
     });
+    setIsGlowing(false);
   };
 
   //video 배경
@@ -143,13 +147,14 @@ export default function Main() {
       <div className="icon-container">
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon1_btn"
           onClick={() => playMusic(1)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon1 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon1"
             width="94"
             height="94"
@@ -160,13 +165,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon2_btn"
           onClick={() => playMusic(2)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon2 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon2"
             width="94"
             height="94"
@@ -177,13 +183,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon3_btn"
           onClick={() => playMusic(3)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon3 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon3"
             width="94"
             height="94"
@@ -194,13 +201,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon4_btn"
           onClick={() => playMusic(4)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon4 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon4"
             width="94"
             height="94"
@@ -211,13 +219,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon5_btn"
           onClick={() => playMusic(5)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon5 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon5"
             width="94"
             height="94"
@@ -228,13 +237,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon6_btn"
           onClick={() => playMusic(6)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon6 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon6"
             width="94"
             height="94"
@@ -245,13 +255,14 @@ export default function Main() {
         </button>
         <br />
         <button
-          className="music-btn"
+          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
           id="icon7_btn"
           onClick={() => playMusic(7)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
+            className={`icon7 ${isGlowing && isPlaying ? 'glow' : ''}`}
             id="icon7"
             width="94"
             height="94"

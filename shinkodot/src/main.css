@@ -81,3 +81,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* neon */
+/* .icon.glow {
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  transition: box-shadow 0.5s ease-in-out;
+} */
+.icon1.glow {
+  filter: drop-shadow(0 0 10px #ff1493) drop-shadow(0 0 20px #ff1493)
+    drop-shadow(0 0 30px #ff1493);
+  transition: filter 0.5s ease-in-out;
+}
