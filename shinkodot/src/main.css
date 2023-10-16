@@ -69,3 +69,15 @@
 #logo {
   font-size: 40px;
 }
+
+/* credit */
+.hidden {
+  display: none;
+}
+
+.credit-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -59,10 +59,13 @@ export default function Main() {
 
   //music player
   const [currentTrack, setCurrentTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [isCredit, setIsCredit] = useState(false);
   const audioRefs = useRef(Array.from({ length: 7 }, () => new Audio()));
 
-  const playMusic = (trackNumber) => {
-    const filePath = `public/music/${trackNumber}.wav`;
+  const playMusic = async (trackNumber) => {
+    const filePath = `/music/${trackNumber}.wav`;
 
     if (currentTrack !== filePath) {
       audioRefs.current.forEach((audio) => {
@@ -74,11 +77,32 @@ export default function Main() {
     }
 
     setCurrentTrack(filePath);
-    const audio = audioRefs.current[trackNumber - 1];
-    if (audio) {
-      audio.src = filePath;
-      audio.play();
+
+    try {
+      const response = await fetch(filePath);
+      const blob = await response.blob();
+
+      const audio = audioRefs.current[trackNumber - 1];
+      if (audio) {
+        audio.src = URL.createObjectURL(blob);
+        audio.play();
+        setIsPlaying(true);
+        setIsCredit(true);
+      }
+    } catch (error) {
+      console.error('Error fetching or playing audio:', error);
     }
+  };
+
+  //music btn
+  const pauseMusic = () => {
+    audioRefs.current.forEach((audio) => {
+      if (audio) {
+        audio.pause();
+        setIsPlaying(false);
+        setIsCredit(false);
+      }
+    });
   };
 
   //view
@@ -108,7 +132,7 @@ export default function Main() {
         </div>
       </GoogleReCaptchaProvider>
       {/* logo */}
-      <div className="logo-container">
+      <div className={`logo-container ${isPlaying ? 'hidden' : ''}`}>
         <span id="logo">SHINKODOT</span>
         <br />
         <span id="notice">click the icon</span>
@@ -120,6 +144,8 @@ export default function Main() {
           className="music-btn"
           id="icon1_btn"
           onClick={() => playMusic(1)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
           <img
             id="icon1"
@@ -128,9 +154,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/heart-with-pulse.png"
             alt="heart-with-pulse"
           />
+          {isHover && <span id="title1">room</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon2_btn">
+        <button
+          className="music-btn"
+          id="icon2_btn"
+          onClick={() => playMusic(2)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon2"
             width="94"
@@ -138,9 +171,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/pill.png"
             alt="pill"
           />
+          {isHover && <span id="title2">rain</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon3_btn">
+        <button
+          className="music-btn"
+          id="icon3_btn"
+          onClick={() => playMusic(3)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon3"
             width="94"
@@ -148,9 +188,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/snail.png"
             alt="snail"
           />
+          {isHover && <span id="title3">opal</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon4_btn">
+        <button
+          className="music-btn"
+          id="icon4_btn"
+          onClick={() => playMusic(4)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon4"
             width="94"
@@ -158,9 +205,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/ghost.png"
             alt="ghost"
           />
+          {isHover && <span id="title4">blue camera</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon5_btn">
+        <button
+          className="music-btn"
+          id="icon5_btn"
+          onClick={() => playMusic(5)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon5"
             width="94"
@@ -168,9 +222,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/fan-2.png"
             alt="fan-2"
           />
+          {isHover && <span id="title5">glow in the dark</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon6_btn">
+        <button
+          className="music-btn"
+          id="icon6_btn"
+          onClick={() => playMusic(6)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon6"
             width="94"
@@ -178,9 +239,16 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/biotech.png"
             alt="biotech"
           />
+          {isHover && <span id="title6">ET</span>}
         </button>
         <br />
-        <button className="music-btn" id="icon7_btn">
+        <button
+          className="music-btn"
+          id="icon7_btn"
+          onClick={() => playMusic(7)}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <img
             id="icon7"
             width="94"
@@ -188,6 +256,7 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/beach-ball.png"
             alt="beach-ball"
           />
+          {isHover && <span id="title7">10</span>}
         </button>
         <br />
         <button className="music-btn" id="icon8_btn">
@@ -219,7 +288,15 @@ export default function Main() {
             alt="spotify"
           />
         </button>
+        <br />
+        <button onClick={pauseMusic}>중지</button>
       </div>
+      {/* credit */}
+      {isCredit && (
+        <div className="credit-container">
+          <span id="credit">Music by SHINKODOT</span>
+        </div>
+      )}
     </>
   );
 }
