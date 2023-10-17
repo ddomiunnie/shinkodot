@@ -86,6 +86,7 @@ export default function Main() {
   const [isHover, setIsHover] = useState(false);
   const [isCredit, setIsCredit] = useState(false);
   const audioRefs = useRef(Array.from({ length: 7 }, () => new Audio()));
+  const mouseEffect = new Audio('/effect/mouse.mp3');
 
   const playMusic = async (trackNumber) => {
     const filePath = `/music/${trackNumber}.wav`;
@@ -96,6 +97,7 @@ export default function Main() {
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
+          audio.removeEventListener('ended', handleMusicEnd);
         }
       });
       setClickIcon(trackNumber - 1);
@@ -113,10 +115,20 @@ export default function Main() {
         audio.play();
         setIsPlaying(true);
         setIsCredit(true);
+        audio.addEventListener('ended', handleMusicEnd);
+
+        mouseEffect.play();
       }
     } catch (error) {
       console.error('Error fetching or playing audio:', error);
     }
+  };
+
+  const handleMusicEnd = () => {
+    setIsPlaying(false);
+    setIsCredit(false);
+    setIsGlowing(false);
+    setClickIcon(null);
   };
 
   //music btn
@@ -130,6 +142,8 @@ export default function Main() {
     });
     setIsGlowing(false);
     setClickIcon(null);
+
+    mouseEffect.play();
   };
 
   //video 배경
@@ -157,11 +171,13 @@ export default function Main() {
       </div>
 
       {/* logo */}
-      <div className={`logo-container ${isPlaying ? 'hidden' : ''}`}>
-        <span id="logo">SHINKODOT</span>
-        <br />
-        <span id="notice">click the icon</span>
-      </div>
+      {!isContactModalOpen && (
+        <div className={`logo-container ${isPlaying ? 'hidden' : ''}`}>
+          <span id="logo">SHINKODOT</span>
+          <br />
+          <span id="notice">click the icon</span>
+        </div>
+      )}
       {/* icon */}
       <div className="icon-container">
         <br />
@@ -354,12 +370,7 @@ export default function Main() {
       {isCredit && (
         <div className="credit-container">
           <img id="credit" src="/credit/example.png" alt="credit" />
-          <button
-            className={`music-btn stop-btn ${
-              isGlowing && isPlaying ? 'glow' : ''
-            }`}
-            onClick={pauseMusic}
-          >
+          <button id="credit-btn" onClick={pauseMusic}>
             Stop
           </button>
         </div>

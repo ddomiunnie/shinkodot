@@ -61,6 +61,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 #notice {
@@ -76,12 +77,39 @@
 }
 
 .credit-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: filter 0.5s;
+  z-index: 1001; /* 더 큰 z-index 값으로 설정하여 모달 위에 위치하도록 함 */
+}
+
+#credit {
+  width: 300px; /* 적절한 크기로 조절 */
+  height: auto; /* 비율에 맞게 크기 조절 */
+}
+
+#credit-btn {
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
+.credit-container:hover #credit {
+  filter: blur(5px); /* 호버 시 이미지를 흐려지도록 함 */
+}
+
+.credit-container:hover #credit-btn {
+  display: block; /* 호버 시 Stop 버튼을 보이도록 함 */
+}
 /* neon */
 /* .icon.glow {
   box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
