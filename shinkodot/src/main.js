@@ -13,14 +13,23 @@ export default function Main() {
 
   const openContactModal = () => {
     setContactModalOpen(true);
+    if (!isPlaying) {
+      mouseEffect.play();
+    }
   };
 
   const closeContactModal = () => {
     setContactModalOpen(false);
+    if (!isPlaying) {
+      mouseEffect.play();
+    }
   };
   //subscribe
   const subscribePopup = (url) => {
     const shopURL = url || 'https://forms.gle/HxYeFkmLDaiLc35N7';
+    if (!isPlaying) {
+      mouseEffect.play();
+    }
 
     //팝업창 위치
     const screenWidth =
@@ -52,6 +61,9 @@ export default function Main() {
   //shop popup
   const openPopup = (url) => {
     const shopURL = url || 'https://marpple.shop/shinkodot';
+    if (!isPlaying) {
+      mouseEffect.play();
+    }
 
     //팝업창 위치
     const screenWidth =
@@ -90,17 +102,18 @@ export default function Main() {
 
   const playMusic = async (trackNumber) => {
     const filePath = `/music/${trackNumber}.wav`;
-    setIsGlowing(true);
 
     if (currentTrack !== filePath) {
-      audioRefs.current.forEach((audio) => {
+      audioRefs.current.forEach((audio, index) => {
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
-          audio.removeEventListener('ended', handleMusicEnd);
+
+          document.getElementById(`icon${index + 1}`).classList.remove('glow');
         }
       });
-      setClickIcon(trackNumber - 1);
+
+      document.getElementById(`icon${trackNumber}`).classList.add('glow');
     }
 
     setCurrentTrack(filePath);
@@ -133,13 +146,16 @@ export default function Main() {
 
   //music btn
   const pauseMusic = () => {
-    audioRefs.current.forEach((audio) => {
+    audioRefs.current.forEach((audio, index) => {
       if (audio) {
         audio.pause();
         setIsPlaying(false);
         setIsCredit(false);
+
+        document.getElementById(`icon${index + 1}`).classList.remove('glow');
       }
     });
+
     setIsGlowing(false);
     setClickIcon(null);
 
@@ -222,7 +238,7 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/pill.png"
             alt="pill"
           />
-          {isHover && <span id="title2">rain</span>}
+          {isHover && <span id="title2">\\\ rain</span>}
         </button>
         <br />
         <button
@@ -367,7 +383,7 @@ export default function Main() {
         <br />
       </div>
       {/* credit */}
-      {isCredit && (
+      {isCredit && !isContactModalOpen && (
         <div className="credit-container">
           <img id="credit" src="/credit/example.png" alt="credit" />
           <button id="credit-btn" onClick={pauseMusic}>
