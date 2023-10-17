@@ -3,12 +3,11 @@ import './main.css';
 import React, { useState, useRef, useEffect } from 'react';
 import Contact from './Contact';
 import Modal from './Modal';
-import Subscribe from './Subscribe';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 export default function Main() {
   //neon effect
   const [isGlowing, setIsGlowing] = useState(false);
+  const [clickIcon, setClickIcon] = useState(null);
   //contact
   const [isContactModalOpen, setContactModalOpen] = useState(false);
 
@@ -20,14 +19,36 @@ export default function Main() {
     setContactModalOpen(false);
   };
   //subscribe
-  const [isSubscribeModalOpen, setSubscribeModalOpen] = useState(false);
+  const subscribePopup = (url) => {
+    const shopURL = url || 'https://forms.gle/HxYeFkmLDaiLc35N7';
 
-  const openSubscribeModal = () => {
-    setSubscribeModalOpen(true);
+    //팝업창 위치
+    const screenWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    const screenHeight =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+    const left = (screenWidth - 600) / 2;
+    const top = (screenHeight - 400) / 2;
+
+    const popupWindow = window.open(
+      shopURL,
+      '_blank',
+      `width=600,height=400,left=${left},top=${top}`
+    );
+
+    if (
+      !popupWindow ||
+      popupWindow.closed ||
+      typeof popupWindow.closed === 'undefined'
+    ) {
+      alert('팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요');
+    }
   };
-  const closeSubscribeModal = () => {
-    setSubscribeModalOpen(false);
-  };
+
   //shop popup
   const openPopup = (url) => {
     const shopURL = url || 'https://marpple.shop/shinkodot';
@@ -77,6 +98,7 @@ export default function Main() {
           audio.currentTime = 0;
         }
       });
+      setClickIcon(trackNumber - 1);
     }
 
     setCurrentTrack(filePath);
@@ -107,6 +129,7 @@ export default function Main() {
       }
     });
     setIsGlowing(false);
+    setClickIcon(null);
   };
 
   //video 배경
@@ -114,29 +137,25 @@ export default function Main() {
   //view
   return (
     <>
-      <GoogleReCaptchaProvider reCaptchaKey="6LfdlZkoAAAAAAf5EXOxXO_Dn2vwobNGkv8AHaIY">
-        <div id="main">
-          <span id="album">shinkodot</span> <br />
-          <span id="artist">shinkodot</span>
-          <div id="main02">
-            <button id="contact" onClick={openContactModal}>
-              contact
-            </button>
-            <button id="subscribe" onClick={openSubscribeModal}>
-              subscribe
-            </button>
-            <button id="shop" onClick={() => openPopup()}>
-              shop
-            </button>
-          </div>
-          <Modal isOpen={isContactModalOpen} onClose={closeContactModal}>
-            <Contact />
-          </Modal>
-          <Modal isOpen={isSubscribeModalOpen} onClose={closeSubscribeModal}>
-            <Subscribe />
-          </Modal>
+      <div id="main">
+        <span id="album">shinkodot</span> <br />
+        <span id="artist">shinkodot</span>
+        <div id="main02">
+          <button id="contact" onClick={openContactModal}>
+            contact
+          </button>
+          <button id="subscribe" onClick={() => subscribePopup()}>
+            subscribe
+          </button>
+          <button id="shop" onClick={() => openPopup()}>
+            shop
+          </button>
         </div>
-      </GoogleReCaptchaProvider>
+        <Modal isOpen={isContactModalOpen} onClose={closeContactModal}>
+          <Contact />
+        </Modal>
+      </div>
+
       {/* logo */}
       <div className={`logo-container ${isPlaying ? 'hidden' : ''}`}>
         <span id="logo">SHINKODOT</span>
@@ -147,14 +166,18 @@ export default function Main() {
       <div className="icon-container">
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon1_btn"
           onClick={() => playMusic(1)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon1 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon1"
             width="94"
             height="94"
@@ -165,14 +188,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon2_btn"
           onClick={() => playMusic(2)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon2 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon2"
             width="94"
             height="94"
@@ -183,14 +210,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon3_btn"
           onClick={() => playMusic(3)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon3 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon3"
             width="94"
             height="94"
@@ -201,14 +232,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon4_btn"
           onClick={() => playMusic(4)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon4 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon4"
             width="94"
             height="94"
@@ -219,14 +254,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon5_btn"
           onClick={() => playMusic(5)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon5 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon5"
             width="94"
             height="94"
@@ -237,14 +276,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon6_btn"
           onClick={() => playMusic(6)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon6 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon6"
             width="94"
             height="94"
@@ -255,14 +298,18 @@ export default function Main() {
         </button>
         <br />
         <button
-          className={`music-btn ${isGlowing && isPlaying ? 'glow' : ''}`}
+          className={`music-btn ${
+            isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+          }`}
           id="icon7_btn"
           onClick={() => playMusic(7)}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
           <img
-            className={`icon7 ${isGlowing && isPlaying ? 'glow' : ''}`}
+            className={`icon ${
+              isGlowing && isPlaying && clickIcon === 0 ? 'glow' : ''
+            }`}
             id="icon7"
             width="94"
             height="94"
@@ -302,12 +349,19 @@ export default function Main() {
           />
         </button>
         <br />
-        <button onClick={pauseMusic}>중지</button>
       </div>
       {/* credit */}
       {isCredit && (
         <div className="credit-container">
-          <span id="credit">Music by SHINKODOT</span>
+          <img id="credit" src="/credit/example.png" alt="credit" />
+          <button
+            className={`music-btn stop-btn ${
+              isGlowing && isPlaying ? 'glow' : ''
+            }`}
+            onClick={pauseMusic}
+          >
+            Stop
+          </button>
         </div>
       )}
     </>
