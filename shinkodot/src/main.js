@@ -5,13 +5,13 @@ import Contact from './Contact';
 import Modal from './Modal';
 
 //credit img
-import creditImg1 from './credit/1_room.png';
-import creditImg2 from './credit/2_rain.png';
-import creditImg3 from './credit/3_bluecamera.png';
-import creditImg4 from './credit/4_OPAL.png';
-import creditImg5 from './credit/5_glow in the dark.png';
-import creditImg6 from './credit/6_ET.png';
-import creditImg7 from './credit/7_10.png';
+import creditImg1 from './credit/room.png';
+import creditImg2 from './credit/rain.png';
+import creditImg3 from './credit/bluecamera.png';
+import creditImg4 from './credit/opal.png';
+import creditImg5 from './credit/glow.png';
+import creditImg6 from './credit/et.png';
+import creditImg7 from './credit/ten.png';
 
 export default function Main() {
   //bgm
@@ -147,8 +147,8 @@ export default function Main() {
         const creditImgArray = [
           creditImg1,
           creditImg2,
-          creditImg3,
           creditImg4,
+          creditImg3,
           creditImg5,
           creditImg6,
           creditImg7,
@@ -166,6 +166,7 @@ export default function Main() {
     setIsCredit(false);
     setIsGlowing(false);
     setClickIcon(null);
+    console.log('isGlowing', isGlowing);
   };
 
   //music btn
