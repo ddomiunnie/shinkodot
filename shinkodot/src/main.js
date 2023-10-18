@@ -8,6 +8,11 @@ import Modal from './Modal';
 import creditImg1 from './credit/1_room.png';
 import creditImg2 from './credit/2_rain.png';
 import creditImg3 from './credit/3_bluecamera.png';
+import creditImg4 from './credit/4_OPAL.png';
+import creditImg5 from './credit/5_glow in the dark.png';
+import creditImg6 from './credit/6_ET.png';
+import creditImg7 from './credit/7_10.png';
+
 export default function Main() {
   //neon effect
   const [isGlowing, setIsGlowing] = useState(false);
@@ -101,6 +106,7 @@ export default function Main() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isCredit, setIsCredit] = useState(false);
+  const [creditImg, setCreditImg] = useState('/credit/example.png');
   const audioRefs = useRef(Array.from({ length: 7 }, () => new Audio()));
   const mouseEffect = new Audio('/effect/click.wav');
 
@@ -136,20 +142,17 @@ export default function Main() {
 
         mouseEffect.play();
 
-        const creditImg = document.getElementById('credit');
-        switch (trackNumber) {
-          case 1:
-            creditImg.src = creditImg1;
-            break;
-          case 2:
-            creditImg.src = creditImg2;
-            break;
-          case 3:
-            creditImg.src = creditImg3;
-            break;
-          default:
-            creditImg.src = '/credit/example.png';
-        }
+        const creditImgArray = [
+          creditImg1,
+          creditImg2,
+          creditImg3,
+          creditImg4,
+          creditImg5,
+          creditImg6,
+          creditImg7,
+        ];
+
+        setCreditImg(creditImgArray[trackNumber - 1]);
       }
     } catch (error) {
       console.error('Error fetching or playing audio:', error);
@@ -186,6 +189,8 @@ export default function Main() {
   //view
   return (
     <>
+      {/* bgm */}
+
       {/* video */}
 
       {/* nav-bar */}
@@ -407,7 +412,7 @@ export default function Main() {
       {/* credit */}
       {isCredit && !isContactModalOpen && (
         <div className="credit-container">
-          <img id="credit" alt="credit" />
+          <img id="credit" alt="credit" src={creditImg} />
           <button id="credit-btn" onClick={pauseMusic}>
             Stop
           </button>
