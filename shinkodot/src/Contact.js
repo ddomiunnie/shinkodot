@@ -13,10 +13,11 @@ export default function Contact() {
             rel="noopener noreferrer"
           >
             <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/material/24/link--v1.png"
-              alt="link--v1"
+              id="gmail"
+              width="16"
+              height="16"
+              src="https://img.icons8.com/tiny-glyph/16/link.png"
+              alt="link"
             />
           </a>
         </span>
@@ -29,10 +30,11 @@ export default function Contact() {
             rel="noopener noreferrer"
           >
             <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/material/24/link--v1.png"
-              alt="link--v1"
+              id="insta"
+              width="16"
+              height="16"
+              src="https://img.icons8.com/tiny-glyph/16/link.png"
+              alt="link"
             />
           </a>
         </span>

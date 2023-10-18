@@ -14,6 +14,8 @@ import creditImg6 from './credit/6_ET.png';
 import creditImg7 from './credit/7_10.png';
 
 export default function Main() {
+  //bgm
+
   //neon effect
   const [isGlowing, setIsGlowing] = useState(false);
   const [clickIcon, setClickIcon] = useState(null);
@@ -192,11 +194,15 @@ export default function Main() {
       {/* bgm */}
 
       {/* video */}
-
+      <video id="video-background" autoPlay loop muted>
+        <source src="/video/main_02.mp4" type="video/mp4" />
+      </video>
       {/* nav-bar */}
       <div id="main">
-        <span id="album">shinkodot</span> <br />
+        <span id="album">shinkodot</span>
+        <br />
         <span id="artist">shinkodot</span>
+
         <div id="main02">
           <button id="contact" onClick={openContactModal}>
             contact
@@ -265,7 +271,7 @@ export default function Main() {
             src="https://img.icons8.com/3d-fluency/94/pill.png"
             alt="pill"
           />
-          {isHover && <span id="title2">\\\ rain</span>}
+          {isHover && <span id="title2">\\\ RAIN</span>}
         </button>
         <br />
         <button
@@ -414,7 +420,7 @@ export default function Main() {
         <div className="credit-container">
           <img id="credit" alt="credit" src={creditImg} />
           <button id="credit-btn" onClick={pauseMusic}>
-            Stop
+            STOP
           </button>
         </div>
       )}

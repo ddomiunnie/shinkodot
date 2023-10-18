@@ -1,18 +1,33 @@
+/* video */
+#video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* 배경 비디오를 화면의 뒤로 보냄 */
+}
+
 /* 상단 로고 */
 #main {
   font-family: 'Arial', sans-serif;
+
   margin: 20px;
 }
 
 #album {
   text-align: left;
   font-weight: bold;
-  font-size: large;
+  font-size: 30px;
+  color: white;
 }
 
 #artist {
   font-weight: lighter;
-  font-size: small;
+  font-size: 20px;
+  color: white;
 }
 
 #main02 {
@@ -29,8 +44,9 @@
   margin-right: 10px;
   background: none;
   border: none;
+  font-size: 20px;
+  color: white;
 }
-
 /* 아이콘 */
 .icon-container {
   display: flex;
@@ -48,6 +64,20 @@
 #icon8_btn,
 #icon10_btn {
   margin-left: auto;
+  color: white;
+}
+
+#icon1,
+#icon3,
+#icon5,
+#icon7,
+#icon9,
+#icon1_btn,
+#icon3_btn,
+#icon5_btn,
+#icon7_btn,
+#icon9_btn {
+  color: white;
 }
 
 .music-btn {
@@ -57,6 +87,17 @@
   border: none;
 }
 
+#title1,
+#title2,
+#title3,
+#title4,
+#title5,
+#title6,
+#title7 {
+  font-size: 17px;
+  text-align: center;
+}
+
 /* 로고 */
 .logo-container {
   position: fixed;
@@ -64,6 +105,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  color: white;
+  font-family: 'Arial', sans-serif;
 }
 
 #notice {
@@ -104,8 +147,8 @@
 }
 
 #credit {
-  width: 300px;
-  height: auto;
+  width: 500px;
+  height: 400px;
   animation: moveUpDown 2s infinite;
 }
 
@@ -116,9 +159,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
-  color: white;
+  color: black;
   border: none;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
 }
 
