@@ -4,6 +4,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import Contact from './Contact';
 import Modal from './Modal';
 
+//credit img
+import creditImg1 from './credit/1_room.png';
+import creditImg2 from './credit/2_rain.png';
+import creditImg3 from './credit/3_bluecamera.png';
 export default function Main() {
   //neon effect
   const [isGlowing, setIsGlowing] = useState(false);
@@ -131,6 +135,21 @@ export default function Main() {
         audio.addEventListener('ended', handleMusicEnd);
 
         mouseEffect.play();
+
+        const creditImg = document.getElementById('credit');
+        switch (trackNumber) {
+          case 1:
+            creditImg.src = creditImg1;
+            break;
+          case 2:
+            creditImg.src = creditImg2;
+            break;
+          case 3:
+            creditImg.src = creditImg3;
+            break;
+          default:
+            creditImg.src = '/credit/example.png';
+        }
       }
     } catch (error) {
       console.error('Error fetching or playing audio:', error);
@@ -388,7 +407,7 @@ export default function Main() {
       {/* credit */}
       {isCredit && !isContactModalOpen && (
         <div className="credit-container">
-          <img id="credit" src="/credit/example.png" alt="credit" />
+          <img id="credit" alt="credit" />
           <button id="credit-btn" onClick={pauseMusic}>
             Stop
           </button>
