@@ -98,7 +98,7 @@ export default function Main() {
   const [isHover, setIsHover] = useState(false);
   const [isCredit, setIsCredit] = useState(false);
   const audioRefs = useRef(Array.from({ length: 7 }, () => new Audio()));
-  const mouseEffect = new Audio('/effect/mouse.mp3');
+  const mouseEffect = new Audio('/effect/click.wav');
 
   const playMusic = async (trackNumber) => {
     const filePath = `/music/${trackNumber}.wav`;
@@ -167,6 +167,9 @@ export default function Main() {
   //view
   return (
     <>
+      {/* video */}
+
+      {/* nav-bar */}
       <div id="main">
         <span id="album">shinkodot</span> <br />
         <span id="artist">shinkodot</span>
