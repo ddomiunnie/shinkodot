@@ -111,9 +111,11 @@
 
 #notice {
   text-align: center;
+  font-family: 'Fasthand', sans-serif;
+  font-size: 40px;
 }
 #logo {
-  font-size: 40px;
+  font-size: 80px;
 }
 
 /* credit */
@@ -147,8 +149,8 @@
 }
 
 #credit {
-  width: 500px;
-  height: 400px;
+  width: 700px;
+  height: 500px;
   animation: moveUpDown 2s infinite;
 }
 
